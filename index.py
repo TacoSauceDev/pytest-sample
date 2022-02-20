@@ -18,7 +18,7 @@ def handler(event, context):
     return buildResponse(secretExtracted, os.environ['headerValues'], '200')
 
 def retrieveSecret(secretId):
-    return this.client.get_secret_value(SecretId=secretId)
+    return client.get_secret_value(SecretId=secretId)
 
 def extractSecret(secret, secretValueName):
     secrets = json.loads(secret['SecretString'])
@@ -26,8 +26,8 @@ def extractSecret(secret, secretValueName):
 
 
 def buildResponse(body_payload, headers, response_code):
-        return {
+    return {
         "statusCode": response_code,
         "headers": headers,
         "body": body_payload
-        }
+    }
