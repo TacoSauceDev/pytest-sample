@@ -9,8 +9,8 @@ import os
 # os.environ('secretId')
 # os.environ('secretValueName')
 # os.environ('headerValues')
-
-client = boto3.client('secretsmanager')
+session = boto3.session.Session()
+client = session.client(service_name='secretsmanager',region_name='us-west-2')
 
 def handler(event, context):
     secret = retrieveSecret(os.environ['secretId'])
