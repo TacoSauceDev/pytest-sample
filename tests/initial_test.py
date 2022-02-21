@@ -14,7 +14,7 @@ def test_retrieveSecret():
     SecretString = [{"Key":"CostCenter","Value":"12345"}],
   )
 
-  secret = retrieveSecret('TestSecret', client):
+  secret = retrieveSecret('TestSecret', client)
   assert secret['SecretString']['CostCenter'] == '12345'
 
 def test_extractSecret():
