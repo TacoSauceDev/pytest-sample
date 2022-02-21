@@ -13,12 +13,10 @@ def test_retrieveSecret():
   client = session.client(service_name='secretsmanager',region_name='us-west-2')
   client.create_secret(
     Name = 'TestSecret',
-    SecretString = '[{"Key":"CostCenter","Value":"12345"}]',
+    SecretString = '{"CostCenter":"12345"}',
   )
-
-  secret = json.loads(retrieveSecret('TestSecret', client))
-
-  assert ((secret['SecretString'])['CostCenter'] == '12345')
+  secret = json.loads(retrieveSecret('TestSecret', client)['SecretString'])
+  assert (secret['CostCenter'] == "12345")
 
 def test_extractSecret():
   assert (1,2,3) == (1,2,3)
