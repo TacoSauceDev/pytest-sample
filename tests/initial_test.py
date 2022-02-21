@@ -11,7 +11,7 @@ def test_retrieveSecret():
   client = session.client(service_name='secretsmanager',region_name='us-west-2')
   client.create_secret(
     Name = 'TestSecret',
-    SecretString = [{"Key":"CostCenter","Value":"12345"},
+    SecretString = [{"Key":"CostCenter","Value":"12345"}],
   )
 
   secret = retrieveSecret('TestSecret', client):
