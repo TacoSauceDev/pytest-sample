@@ -27,5 +27,3 @@ def test_extractSecret():
 
 def test_buildResponse():
   assert (buildResponse("123","321","200")) == ({"statusCode": "200","headers": "321","body": "123"})
-
-test_extractSecret()
