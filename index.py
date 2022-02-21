@@ -21,7 +21,7 @@ def retrieveSecret(secretId, s3client):
     return s3client.get_secret_value(SecretId=secretId)
 
 def extractSecret(secret, secretValueName):
-    secrets = json.loads(secret['SecretString'])
+    secrets = secret['SecretString']
     return secrets[secretValueName]
 
 
