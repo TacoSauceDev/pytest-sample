@@ -13,12 +13,12 @@ session = boto3.session.Session()
 client = session.client(service_name='secretsmanager',region_name='us-west-2')
 
 def handler(event, context):
-    secret = retrieveSecret(os.environ['secretId'])
+    secret = retrieveSecret(os.environ['secretId'], client)
     secretExtracted = extractSecret(secret, os.environ['secretValueName'])
     return buildResponse(secretExtracted, os.environ['headerValues'], '200')
 
-def retrieveSecret(secretId):
-    return client.get_secret_value(SecretId=secretId)
+def retrieveSecret(secretId, s3client):
+    return s3client.get_secret_value(SecretId=secretId)
 
 def extractSecret(secret, secretValueName):
     secrets = json.loads(secret['SecretString'])
