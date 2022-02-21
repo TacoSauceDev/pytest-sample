@@ -1,4 +1,5 @@
 from index import buildResponse
+from index import retrieveSecret
 from moto import mock_secretsmanager
 import boto3
 
