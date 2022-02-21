@@ -1,6 +1,7 @@
 from index import buildResponse
 from index import retrieveSecret
 from moto import mock_secretsmanager
+import json
 import boto3
 
 def test_passing():
@@ -15,7 +16,7 @@ def test_retrieveSecret():
     SecretString = '[{"Key":"CostCenter","Value":"12345"}]',
   )
 
-  secret = retrieveSecret('TestSecret', client)
+  secret = json.loads(retrieveSecret('TestSecret', client))
 
   assert ((secret['SecretString'])['CostCenter'] == '12345')
 
