@@ -1,10 +1,21 @@
 from index import buildResponse
+from moto import mock_secretsmanager
+import boto3
 
 def test_passing():
   assert (1,2,3) == (1,2,3)
 
+@mock_secretsmanager
 def test_retrieveSecret():
-  assert (1,2,3) == (1,2,3)
+  session = boto3.session.Session()
+  client = session.client(service_name='secretsmanager',region_name='us-west-2')
+  client.create_secret(
+    Name = 'TestSecret',
+    SecretString = [{"Key":"CostCenter","Value":"12345"},
+  )
+
+  secret = retrieveSecret('TestSecret', client):
+  assert secret['SecretString']['CostCenter'] == '12345'
 
 def test_extractSecret():
   assert (1,2,3) == (1,2,3)
